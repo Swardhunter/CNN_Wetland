@@ -1,6 +1,5 @@
 if __name__ == "__main__":
-    from Functions import MyCall,DEEPLAB_BW,CustomDataset,UNET_BW,UNET_BW_Losses,SWIN_UNET_BW
-    import torch 
+    from Functions import MyCall,CustomDataset,UNET_BW
     from pytorch_lightning.callbacks import EarlyStopping
     from pytorch_lightning.loggers import TensorBoardLogger
     from pytorch_lightning import Trainer
@@ -11,31 +10,29 @@ if __name__ == "__main__":
     
     os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2"
 
-    chkpointpath = rf'/home/mskenawi/Mahmoud_Saber_Kenawi/WETLAND/Code/Log_Swin_Unet/Swin/version_5/checkpoints/epoch=44-step=169155.ckpt'
+    #chkpointpath = rf'/home/mskenawi/Mahmoud_Saber_Kenawi/WETLAND/Code/Log_Swin_Unet/Swin/version_5/checkpoints/epoch=44-step=169155.ckpt'
 
     # # Load the checkpoint
-    checkpoint = torch.load(chkpointpath)
+    #checkpoint = torch.load(chkpointpath)
     #print(chkpointpath)
 
 
-    encoder = "Swin"
-    logger = TensorBoardLogger("Log_Swin_Unet",name=encoder)
-    tensorspath = rf'/home/mskenawi/Preproces_Wetland'
+    encoder = "EncoderName"
+    logger = TensorBoardLogger(f"Log{encoder}",name=encoder)
+    tensorspath = rf'Path to Processed Tensors'
     dataset = CustomDataset(tensorspath)
     print (len(dataset))
     
     # # Modify the hyperparameters
     #checkpoint['hyper_parameters']['batch_size'] = 78
     #checkpoint['hyper_parameters']['dataset']= dataset
-    checkpoint['learning_rate']= 0.005
-
     # Save the checkpoint
-    torch.save(checkpoint, "/home/mskenawi/trial.ckpt")
+    #torch.save(checkpoint, "/home/mskenawi/trial.ckpt")
 
     
     
-    #model = SWIN_UNET_BW (num_classes=1, learning_rate=0.001, dataset=dataset, batch_size=16)
-    model = SWIN_UNET_BW.load_from_checkpoint("/home/mskenawi/trial.ckpt")
+    model = UNET_BW (num_classes=1, endcoder=encoder,learning_rate=0.001, dataset=dataset, batch_size=16)
+    #model = SWIN_UNET_BW.load_from_checkpoint("/home/mskenawi/trial.ckpt")
 
 
     trainer = Trainer(logger=logger,
@@ -46,11 +43,11 @@ if __name__ == "__main__":
             callbacks=[MyCall(), EarlyStopping(monitor="IoU", patience=15, mode="max")]
             
         )
-    #tuner = Tuner(trainer)
+    tuner = Tuner(trainer)
 
-    #lr_finder = tuner.lr_find(model)
+    lr_finder = tuner.lr_find(model)
 
         # #     # Pick point based on plot, or get suggestion
-    #new_lr = lr_finder.suggestion()
+    new_lr = lr_finder.suggestion()
     trainer.fit(model)
     trainer.test(model)

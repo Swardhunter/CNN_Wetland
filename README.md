@@ -33,7 +33,6 @@ Urban development and human activities significantly stress various ecosystems, 
 ### Labels
 - The Natural History Museum at NTNU holds fieldwork maps from various periods across Norwegian catchments. These maps were matched with corresponding aerial images and manually annotated to create labeled datasets.
 
-### Figure 1
 ![Figure 1](/Logos/Training_Data.jpg)
 
 ## Preprocessing
@@ -57,8 +56,7 @@ The annotated label data and aerial images were preprocessed as follows:
 - **GDAL**: Used for Geoprocessing.
 - **Pytorch & Torch Lightning**: Used for CNN training and parallel GPU computing.
 
-### Figure 2
-![Figure 2](Logos/Mapping Diagram.jpg)
+![Figure 2]==(/Logos/Mapping Diagram.jpg)
 
 ## Metrics
 
@@ -71,8 +69,7 @@ The final training results were:
 - **Validation Loss**: 0.184
 - **Test Loss**: 0.182
 
-### Figure 3
-![Figure 3](path_to_figure_3)
+![Figure 3](/Logos/Testing.png)
 
 ## Functions
 

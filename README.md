@@ -56,7 +56,7 @@ The annotated label data and aerial images were preprocessed as follows:
 - **GDAL**: Used for Geoprocessing.
 - **Pytorch & Torch Lightning**: Used for CNN training and parallel GPU computing.
 
-![Figure 2]==(/Logos/Mapping Diagram.jpg)
+![Figure 2](/Logos/Mapping%20Diagram.jpg)
 
 ## Metrics
 

@@ -104,6 +104,9 @@ This class implements the U-Net model using PyTorch Lightning. It consists of an
 **File:** `Prediction.py`
 
 This function runs predictions using a trained U-Net model. It performs patch-based prediction and aggregates the results by rotating patches for augmentation. The results are saved as a georeferenced TIFF image.
+You can download the checkpoint file of the trained model from the following link:
+[Download Checkpoint - EfficientNetB07](https://huggingface.co/Swardhunter/Efficentnetb07/tree/main)
+
 
 #### Parameters:
 - `args`: A tuple containing `Image`, `model_chkpt`, `opdir`, and `device_queue` for parallel device usage.

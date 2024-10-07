@@ -61,13 +61,10 @@ The annotated label data and aerial images were preprocessed as follows:
 ## Metrics
 
 The final training results were:
+| **Accuracy** | **F1 Score** | **IoU** | **Training Loss** | **Validation Loss** | **Test Loss** |
+|--------------|--------------|---------|-------------------|---------------------|---------------|
+| 91.1%        | 87.9%        | 78.6%   | 0.2               | 0.184               | 0.182         |
 
-- **Accuracy**: 91.1%
-- **F1 Score**: 87.9%
-- **IoU**: 78.6%
-- **Training Loss**: 0.2
-- **Validation Loss**: 0.184
-- **Test Loss**: 0.182
 
 ![Figure 3](/Logos/Testing.png)
 
